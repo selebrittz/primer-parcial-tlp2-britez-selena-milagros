@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import { CategoryModel } from "../mongoose/category.model.js";
 
 // TODO: configurar el virtuals para el populate inverso con assets
 
@@ -16,6 +17,12 @@ const CategorySchema = new Schema(
   { timestamps: true }
 );
 
-// ! FALTA COMPLETAR ACA
+CategorySchema.virtual("assets", {
+  ref: "Asset",
+  localField: "_id",
+  foreignField: "Category",
+  justOne: false,
+});
+CategorySchema.set("toJSON", { virtuals: true });
 
 export const CategoryModel = model("Category", CategorySchema);

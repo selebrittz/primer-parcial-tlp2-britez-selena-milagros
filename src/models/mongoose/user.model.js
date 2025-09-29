@@ -19,7 +19,7 @@ const UserSchema = new Schema(
       default: "secretary",
     },
     deletedAt: { type: Date, default: null },
-    
+
     profile: {
       employee_number: {
       type: String,
@@ -44,6 +44,13 @@ const UserSchema = new Schema(
   { timestamps: true }
 );
 
-// ! FALTA COMPLETAR ACA
+
+UserSchema.virtual("assets", {
+  ref: "Asset",
+  localField: "_id",
+  foreignField: "responsible", //como esta en assets
+  justOne: false,
+});
+UserSchema.set("toJSON", { virtuals: true });
 
 export const UserModel = model("User", UserSchema);

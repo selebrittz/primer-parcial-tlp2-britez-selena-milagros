@@ -11,8 +11,15 @@ const UserSchema = new Schema(
       minlength: 3,
       maxlength: 20,
     },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+    email: { 
+      type: String, 
+      required: true, 
+      unique: true },
+      
+    password: { 
+      type: String,
+       required: true },
+
     role: {
       type: String,
       enum: ["secretary", "administrator"],
